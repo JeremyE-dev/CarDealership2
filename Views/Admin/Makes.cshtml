@@ -1,0 +1,70 @@
+﻿@model CarDealership2.ViewModels.AddMakeVM
+
+@{
+    Layout = "~/Views/Shared/_SalesLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <Title>Add Make</Title>
+
+</head>
+<body>
+
+    <div style="padding-top: 25px;" class="container">
+        <h2 strong>Add Make</h2>
+        <div style="border-style: groove;" class="row">
+            <div style="padding-top: 25px;padding-bottom: 25px;" class="col-xs-12">
+                @using (Html.BeginForm("Makes", "Admin", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label for="MakeName"> Make </label>
+                        @Html.TextBoxFor(m => m.make.MakeName, new { @class = "form-horizontal", placeholder = "Make" })
+
+                        <button type="submit" class="btn btn-sm btn-primary">Save</button>
+                    </div>
+                    <span class="text-danger">@Html.ValidationMessageFor(m => m.make.MakeName)</span>
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-top: 25px; " class="container">
+        <div class="row">
+            <div class="col-xs-4">
+                <table class=" table table-bordered table-striped table-hover" style="width: auto;">
+                    <thead>
+                        <tr>
+                            <th>Make Name</th>
+                            <th>Date Added</th>
+                            <th>User</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var make in Model.makes)
+                        {
+                            <tr>
+                                <td>@make.MakeName</td>
+                                <td>@make.DateAdded</td>
+                                <td>@make.User.Email</td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</body>
+</html>
